@@ -19,9 +19,7 @@
 #' 
 #' @examples
 #' c(a = 'a1', bc = '2\n3') |> sideway()
-#' 
 #' list(a = '1\n2', b = character(), cd = '3\n4', efg = '5\n6\n7') |> sideway()
-#' 
 #' c(a = '1\n2') |> sideway()
 #' 
 #' # data.frame
@@ -100,13 +98,17 @@ sideway.data.frame <- function(x, ...) {
     .row_names_info(type = 2L) |>
     seq_len()
   
-  .mapply(FUN = \(x, nm) {
-    message('Row ', sQuote(nm))
+  .mapply(FUN = \(x, rnm, rid) {
+    sprintf(fmt = '%s Row %s', rid, sQuote(rnm)) |> 
+      message()
     x |> 
       sideway.default(...)
   }, dots = list(
     x = split.data.frame(x, f = rseq), 
-    nm = row.names.data.frame(x)
+    rnm = row.names.data.frame(x),
+    rid = rseq |> 
+      sprintf(fmt = '[%d]') |> 
+      format.default(justify = 'right')
   ), MoreArgs = NULL)
   
   return(invisible())
