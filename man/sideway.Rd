@@ -34,7 +34,6 @@ Print Sideways
 c(a = 'a1', bc = '2\n3') |> sideway()
 list(a = '1\n2', b = character(), cd = '3\n4', efg = '5\n6\n7') |> sideway()
 c(a = '1\n2') |> sideway()
-
 # data.frame
 Formaldehyde |> sideway() # no rownames
 USArrests |> head() |> sideway() # with rownames
