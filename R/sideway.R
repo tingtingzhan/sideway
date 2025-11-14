@@ -23,7 +23,6 @@
 #' c(a = '1\n2') |> sideway()
 #' @keywords internal
 #' @name sideway
-#' @importFrom cli col_cyan col_magenta style_bold
 #' @export
 sideway <- function(x, ...) UseMethod(generic = 'sideway')
 
